@@ -1,52 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>AR Travel Guide</title>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>
+<!-- include A-Frame obviously -->
+<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+<!-- include ar.js for A-Frame -->
+<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframear.
+js"></script>
 </head>
-<body style="margin: 0; overflow: hidden;">
-  <a-scene embedded arjs>
-    <a-marker preset="hiro">
-      <!-- Content to display when the 'hiro' marker is detected -->
-      <a-entity position="0 0 0">
-        <!-- Replace this box with your custom 3D object -->
-        <a-entity id="modelContainer"></a-entity>
-      </a-entity>
-    </a-marker>
-
-    <a-entity camera></a-entity>
-  </a-scene>
-
-  <script>
-    // Function to load and display the OBJ model
-    function loadOBJModel() {
-      var loader = new THREE.OBJLoader();
-
-      // Load the OBJ model file
-      loader.load(
-        'Models/Jeep_Renegade_2016.obj',
-        function (object) {
-          // Scale and position the model
-          object.scale.set(0.1, 0.1, 0.1);
-          object.position.set(0, 0, 0);
-
-          // Add the loaded model to the model container entity
-          var modelContainer = document.getElementById('modelContainer');
-          modelContainer.appendChild(object);
-        },
-        function (xhr) {
-          console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-        },
-        function (error) {
-          console.error('Error loading OBJ model:', error);
-        }
-      );
-    }
-
-    // Call the loadOBJModel function when the scene is loaded
-    document.querySelector('a-scene').addEventListener('loaded', loadOBJModel);
-  </script>
+<body style='margin : 0px; overflow: hidden;'>
+<a-scene embedded arjs>
+<a-assets>
+<a-asset-item id="tree-obj" src="asst.obj"></a-asset-item>
+</a-assets>
+<a-marker preset="hiro">
+<a-entity obj-model="obj: #treeobj;"
+material="src: texture.png" position="0 0 -
+1" rotation="0 90 0" scale="3 3 3"> </a-entity></a-entity>
+</a-marker>
+<a-entity camera></a-entity>
+</a-scene>
 </body>
 </html>
