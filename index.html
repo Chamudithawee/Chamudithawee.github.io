@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Include A-Frame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- Include AR.js for A-Frame -->
+    <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden">
+    <a-scene embedded arjs>
+      <a-assets>
+        <a-asset-item id="obj" src="Sphinx.obj"></a-asset-item>
+        <img id="texture" src="Sphinx_tex.jpeg" />
+      </a-assets>
+
+      <a-marker preset="hiro">
+        <a-entity
+          obj-model="obj: #obj;"
+          material="src: #texture"
+          position="0 0 0"
+          rotation="0 270 0"
+          scale="0.1 0.1 0.1"
+          animation__rotation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
+        ></a-entity>
+
+        <a-entity
+          text="value: A statue of a falcon-headed sphinx (gryphon) (one of a pair) found at the Temple of Ramesses II at Abu Simbel, Egypt (Nubia). Now in The British Museum, London.; width: 1; align: justify; font-size: 0.5;"
+          position="0 0.5 0"
+          geometry="primitive: plane; width: auto; height: auto;"
+          material="color: #888; opacity: 0.8;"
+        ></a-entity>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
